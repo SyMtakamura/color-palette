@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <link rel="shortcut icon" href="img/favicon.png">
+
+  <title>Color Palette Maker</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/bootstrap-reset.css" rel="stylesheet">
+  <!--external css-->
+  <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/style-responsive.css" rel="stylesheet" />
+  <link href="assets/toastr-master/toastr.css" rel="stylesheet" type="text/css">
+  <link href="css/palette.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <section id="container" class="">
+    <!--header start-->
+    <header class="header white-bg bgc-primary">
+      <!--logo start-->
+      <a href="index.html" class="logo">Color Palette Maker</a>
+      <!--logo end-->
+    </header>
+    <!--header end-->
+    <!--main content start-->
+    <section id="main-content">
+      <section class="wrapper site-min-height">
+        <!-- page start-->
+
+        <div class="row" id="drop-view">
+          <div class="col-md-12" id="drag-zone">
+            <div id="drag-zone-content">
+              <p><i class="fa fa-picture-o fa-5x"></i></p>
+              <p>デザインに使う画像をドロップ</p>
+              <p>または</p>
+              <div>
+                <input style="display:none" type="file" multiple="multiple">
+                <button class="btn btn-info" id="btn-select-file">ファイルを選択</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" id="result-view">
+          <div class="col-md-6 col-md-offset-3">
+            <section class="panel">
+              <canvas id="hidden-canvas"></canvas>
+
+              <div id="selected-pic"></div>
+              
+              <div class="loading-view">
+                <div class="spinner-wave">
+                  <div class="rect1"></div>
+                  <div class="rect2"></div>
+                  <div class="rect3"></div>
+                  <div class="rect4"></div>
+                  <div class="rect5"></div>
+                </div>
+              </div>
+              <div id="result-colors-container">
+
+                <div id="colors-bar"></div>
+                
+                <div class="colors">
+                  <header class="panel-heading">Main Color</header>
+                  <div id="main-colors"></div>
+                </div>
+                
+                <div class="colors">
+                  <header class="panel-heading">Sub Colors</header>
+                  <div id="sub-colors"></div>
+                </div>
+                
+                <div class="colors">
+                  <header class="panel-heading">Accent Colors</header>
+                  <div id="accent-colors"></div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+        <!-- page end-->
+      </section>
+    </section>
+    <!--main content end-->
+  </section>
+
+<!-- js placed at the end of the document so the pages load faster -->
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script class="include" type="text/javascript" src="js/jquery.dcjqaccordion.2.7.js"></script>
+<script src="js/jquery.scrollTo.min.js"></script>
+<script src="js/slidebars.min.js"></script>
+<script src="js/respond.min.js" ></script>
+<script src="assets/toastr-master/toastr.js"></script>
+
+<!--common script for all pages-->
+<script src="js/common-scripts.js"></script>
+<script src="js/rgbaster.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/zeroclipboard/2.1.5/ZeroClipboard.min.js"></script>
+
+<script src="js/palette.js"></script>
+
+
+
+</body>
+</html>

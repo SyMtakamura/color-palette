@@ -1,0 +1,222 @@
+@import url(https://fonts.googleapis.com/css?family=Londrina+Shadow);
+
+/* ----- COMMON ----- */
+
+::-moz-selection {
+  background: #bdc3c7;
+  color: inherit;
+}
+::selection {
+  background: #bdc3c7;
+  color: inherit;
+}
+body {
+  background-color: #F3F7F8;
+  color: #585A5F;
+  font-family: 'Londrina Shadow', cursive;
+}
+.header {
+  padding-left: 25px;
+  -webkit-box-shadow: 0 0 4px rgba(0,0,0,.08), 0 4px 8px rgba(0,0,0,.16);
+  -moz-box-shadow: 0 0 4px rgba(0,0,0,.08), 0 4px 8px rgba(0,0,0,.16);
+  box-shadow: 0 0 4px rgba(0,0,0,.08), 0 4px 8px rgba(0,0,0,.16);
+}
+a.logo {
+  margin-top: 7px;
+  font-size: 32px;
+  color: inherit;
+}
+#main-content {
+  margin-left: 0px;
+}
+.wrapper {
+  padding: 25px;
+}
+.panel {
+  -webkit-box-shadow: 0 -1px 0 #e5e5e5,0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
+  -moz-box-shadow: 0 -1px 0 #e5e5e5,0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
+  box-shadow: 0 -1px 0 #e5e5e5,0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
+}
+.panel-heading {
+  padding-bottom: 2px;
+  font-size: 24px;
+  color: #7f8c8d;
+}
+
+/* ----- button ----- */
+.btn {
+  font-weight: bold;
+  box-shadow: 0 3px rgba(0,0,0,.2);
+}
+
+
+/* ----- drag-zone ----- */
+#drag-zone {
+  position: relative;
+  padding: 180px 0;
+  border-radius: 4px;
+  border: 3px dashed #bdc3c7;
+  text-align: center;
+}
+#drag-zone.over {
+  border: 3px dashed rgba(52, 152, 219,.5);
+  background-color: rgba(52, 152, 219,.15);
+}
+#drag-zone-content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  width: 300px;
+  height: 180px;
+}
+
+/* ----- result-view ----- */
+#result-view {
+  display: none;
+}
+
+/* ----- selected-pic ----- */
+#selected-pic {
+  margin: 10px 0 0 0;
+  padding: 30px;
+  text-align: center;
+}
+#selected-pic img {
+  max-height: 150px;
+  max-width: 100%;
+}
+#hidden-canvas {
+  display: none;
+}
+
+/* ----- colors-bar ----- */
+#colors-bar {
+  border-top: 1px solid rgba(0,0,0,.10);
+  border-bottom: 1px solid rgba(0,0,0,.10);
+  width: 0;
+  height: 18px;
+  line-height: 10px;
+}
+#colors-bar.open {
+  width: 100%;
+  transition: .35s ease;
+}
+#colors-bar span {
+  display: inline-block;
+  height: 100%;
+}
+
+/* ----- colors ----- */
+.colors {
+  height: 0;
+  background-color: #f2f2f2;
+  overflow: hidden;
+}
+.colors.open {
+  height: 100%;
+  transition: .35s ease;
+}
+.colors ul {
+  padding: 10px 10px 1px;
+  border-top: 1px solid rgba(0,0,0,.10);
+}
+.colors li {
+  display: inline-block;
+  margin: 0 6px 6px 0;
+  border: 1px solid rgba(0,0,0,.10);
+  border-radius: 4px;
+  width: 40px;
+  height: 40px;
+}
+.pickable {
+  cursor: pointer;
+  -webkit-transition:0.2s ease-in-out;
+  transition:0.2s ease-in-out;
+}
+.pickable:hover {
+  -webkit-transform:scale(1.2,1.2);
+  transform:scale(1.2,1.2);
+}
+
+/* ----- modal-drop ----- */
+.loading-view {
+  display: none;
+  padding: 30px 0;
+  background-color: rgba(0,0,0,.10);
+  text-align: center;
+  font-size: 24px;
+}
+.spinner-wave {
+  margin: 0 auto;
+  width: 50px;
+  height: 30px;
+  text-align: center;
+  font-size: 10px;
+}
+.spinner-wave > div {
+  background-color: white;
+  height: 100%;
+  width: 6px;
+  display: inline-block;
+
+  -webkit-animation: stretchdelay 1.2s infinite ease-in-out;
+  animation: stretchdelay 1.2s infinite ease-in-out;
+}
+.spinner-wave .rect2 {
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+.spinner-wave .rect3 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+.spinner-wave .rect4 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+.spinner-wave .rect5 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+@-webkit-keyframes stretchdelay {
+  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }
+  20% { -webkit-transform: scaleY(1.0) }
+}
+
+@keyframes stretchdelay {
+  0%, 40%, 100% { transform: scaleY(0.4) }
+  20% { transform: scaleY(1.0) }
+}
+
+/* ----- modal-drop ----- */
+.modal-drop {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  overflow: hidden;
+  padding: 20px;
+  background-color: rgba(0,0,0,.7);
+}
+.modal-drop #drag-zone {
+  height: 100%;
+  color: #ddd;
+}
+
+/* ----- toast ----- */
+.toast {
+}
+.toast .toast-title {
+  font-size: 64px;
+}
+.toast .toast-message {
+  font-size: 32px;
+}
+
+
