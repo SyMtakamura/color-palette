@@ -134,9 +134,12 @@ a.logo {
 }
 .pickable {
   cursor: pointer;
+  -webkit-transition:0.2s ease-in-out;
+  transition:0.2s ease-in-out;
 }
-.pickable:hover {
-  opacity: .5;
+.pickable.zeroclipboard-is-hover {
+  -webkit-transform:scale(1.2,1.2);
+  transform:scale(1.2,1.2);
 }
 
 /* ----- modal-drop ----- */
