@@ -222,7 +222,6 @@
     var clip = new ZeroClipboard( $('.pickable') );
     clip.on("beforecopy", function(event) {
       var color = event.target.getAttribute("title");
-      console.log(color);
       event.target.setAttribute("data-clipboard-text", getColorStringByName(color));
     });
   };
