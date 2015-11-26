@@ -220,10 +220,10 @@
     $colors.addClass("open");
 
     var clip = new ZeroClipboard( $('.pickable') );
-    clip.on("beforecopy", function() {
-      var color = this.getAttribute("title");
+    clip.on("beforecopy", function(event) {
+      var color = event.target.getAttribute("title");
       console.log(color);
-      this.setAttribute("data-clipboard-text", getColorStringByName(color));
+      event.target.setAttribute("data-clipboard-text", getColorStringByName(color));
     });
   };
 
