@@ -139,8 +139,8 @@
       context.drawImage(image, 0, 0, image.width, image.height);
       
       worker.onmessage = function(e){
-        console.log((Date.now() - startTime) + " ms");
-        console.log(e.data.colors);
+        //console.log((Date.now() - startTime) + " ms");
+        //console.log(e.data.colors);
         $loadingView.slideUp(300);
         $resultColorsContainer.slideDown(0);
         showPalette(e.data.colors);

@@ -26,7 +26,6 @@ onmessage = function(e){
         colors.main.sort( function( a, b ) { return b.num - a.num; } );
         colors.sub.sort( function( a, b ) { return b.num - a.num; } );
         removed = colors.sub.splice(colorMaxLength, colors.sub.length - colorMaxLength);
-        console.log(removed);
         for (var i = 0; i < removed.length; i++) {
             colors.accent.push(removed[i]);
         };
