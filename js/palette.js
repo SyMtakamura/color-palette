@@ -1,6 +1,7 @@
 (function($) {
 
   var $bgcPrimary;
+  var $colorFormat;
   var $dropView;
   var $dragZone;
   var $resultView;
@@ -12,6 +13,7 @@
   var $hiddenFileBtn;
   var $visibleFileBtn;
   var startTime;
+  var colorFormat;
 
   var init = function() {
     create();
@@ -20,6 +22,7 @@
 
   var create = function() {
     $bgcPrimary = $('.bgc-primary');
+    $colorFormat = $('#color-format');
     $dropView = $('#drop-view');
     $dragZone = $('#drag-zone');
     $resultView = $('#result-view');
@@ -91,8 +94,11 @@
 
     $(document).on('click', '.pickable', function() {
       var color = $(this).attr("title");
-      toastr.success(getRgbValStringByName(color), "COPIED!!");
+      toastr.success(getColorStringByName(color), "COPIED!!");
     });
+    $colorFormat.on('change', function() {
+      colorFormat = $(this).val();
+    }).trigger('change');
   }
    
   // アップロード処理
@@ -156,7 +162,7 @@
       var tmpTag = "<ul>";
       for(var key in ary) {
         var color = ary[key];
-        tmpTag += '<li style="background-color:' + getRgbValStringByName(color.name) + '" title="' + color.name + '" class="pickable"></li>';
+        tmpTag += '<li style="background-color:' + getHexValStringByName(color.name) + '" title="' + color.name + '" class="pickable"></li>';
       }
       tmpTag += '</ul>';
       return tmpTag;
@@ -175,8 +181,8 @@
       tmpColor = colorObj.accent[0].name;
     }
     $bgcPrimary.css({
-      "background-color": getRgbValStringByName(tmpColor),
-      "color": getRgbValStringByName(color.getContrastGreyScaleColor(tmpColor))
+      "background-color": getHexValStringByName(tmpColor),
+      "color": getHexValStringByName(color.getContrastGreyScaleColor(tmpColor))
     });
   };
 
@@ -187,7 +193,7 @@
       var tmpTag = "";
       for(var key in ary) {
         var color = ary[key];
-        tmpTag += '<span style="background-color:' + getRgbValStringByName(color.name) + ';width:' + (color.num / totalNum * 100) + '%;" title="' + color.name + '" class="pickable"></span>';
+        tmpTag += '<span style="background-color:' + getHexValStringByName(color.name) + ';width:' + (color.num / totalNum * 100) + '%;" title="' + color.name + '" class="pickable"></span>';
       }
       return tmpTag;
     };
@@ -214,10 +220,28 @@
     $colors.addClass("open");
 
     var clip = new ZeroClipboard( $('.pickable') );
-    clip.on("ready", function() {
-      alert("clip");
+    clip.on("beforecopy", function() {
+      var color = $(this).attr("title");
+      $(this).attr("data-clipboard-text", getColorStringByName(color));
     });
   };
+
+  var getColorStringByName = function(name) {
+    switch (colorFormat){
+      case 'hex':
+      return getHexValStringByName(name);
+      case 'rgb':
+      return getRgbValStringByName(name);
+      case 'rgba':
+      return getRgbValStringByName(name, '1.0');
+      default:
+      return null;
+    }
+  }
+
+  var getHexValStringByName = function(name) {
+    return "#" + name.match(/\d+/g).map(function(a){return ("0" + parseInt(a).toString(16)).slice(-2)}).join("");
+  }
 
   var getRgbValStringByName = function(name, _alpha) {
     if(_alpha) {
