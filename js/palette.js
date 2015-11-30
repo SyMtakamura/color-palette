@@ -40,39 +40,12 @@
   var setEvent = function() {
     // 画像のD&D
     $dragZone.on('drop', function(e){
-      var files;
-      var innerFlag = false;
+      var files = e.originalEvent.dataTransfer.files;
       e.preventDefault();
-      files = e.originalEvent.dataTransfer.files;
-      scanFiles(files);
+      onFilesSelect(files);
 
       $(this).removeClass("over");
-      $dropView.hide(0);
-      $resultView.hide(0);
-      $resultView.fadeIn(600);
 
-      if( !$dropView.hasClass("modal-drop") ) {
-        $dropView
-          .addClass("modal-drop")
-          .removeClass("row");
-        $("#main-content")
-          .on('dragenter', function() {
-            innerFlag = true;
-          })
-          .on('dragover', function(){
-            innerFlag = false;
-            $dropView.show(0);
-            return false;
-          })
-          .on('dragleave', function(){
-            if (innerFlag) {
-              innerFlag = false;
-            } else {
-              $dropView.hide(0);
-            }
-            return false;
-          });
-      }
     }).on('dragover', function(){
       $(this).addClass("over");
       return false;
@@ -89,7 +62,7 @@
     });
    
     $hiddenFileBtn.on("change", function(){
-      scanFiles(this.files);
+      onFilesSelect(this.files);
     });
 
     $(document).on('click', '.pickable', function() {
@@ -100,10 +73,9 @@
       colorFormat = $(this).val();
     }).trigger('change');
   }
-   
-  // 取得した画像を Worker で処理
-  var scanFiles = function(files) {
-    var src;
+
+  var onFilesSelect = function(files) {
+    var innerFlag = false;
 
     if (files.length < 1) {
       alert("ファイルがありません");
@@ -113,6 +85,39 @@
       alert("ファイルは一つでお願いします");
       return;
     }
+    $dropView.hide(0);
+    $resultView.hide(0);
+    $resultView.fadeIn(600);
+
+    if( !$dropView.hasClass("modal-drop") ) {
+      $dropView
+        .addClass("modal-drop")
+        .removeClass("row");
+      $("#main-content")
+        .on('dragenter', function() {
+          innerFlag = true;
+        })
+        .on('dragover', function(){
+          innerFlag = false;
+          $dropView.show(0);
+          return false;
+        })
+        .on('dragleave', function(){
+          if (innerFlag) {
+            innerFlag = false;
+          } else {
+            $dropView.hide(0);
+          }
+          return false;
+        });
+    }
+
+    scanFiles(files);
+  };
+   
+  // 取得した画像を Worker で処理
+  var scanFiles = function(files) {
+    var src;
 
     $loadingView.show(0);
     $resultColorsContainer.hide(0);
