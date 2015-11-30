@@ -44,7 +44,7 @@
       var innerFlag = false;
       e.preventDefault();
       files = e.originalEvent.dataTransfer.files;
-      uploadFiles(files);
+      scanFiles(files);
 
       $(this).removeClass("over");
       $dropView.hide(0);
@@ -89,7 +89,7 @@
     });
    
     $hiddenFileBtn.on("change", function(){
-      uploadFiles(this.files);
+      scanFiles(this.files);
     });
 
     $(document).on('click', '.pickable', function() {
@@ -101,8 +101,8 @@
     }).trigger('change');
   }
    
-  // アップロード処理
-  var uploadFiles = function(files) {
+  // 取得した画像を Worker で処理
+  var scanFiles = function(files) {
     var src;
 
     if (files.length < 1) {
@@ -122,7 +122,7 @@
 
     // Blob URLの作成
     src = window.URL.createObjectURL( files[0] );
-    document.getElementById( "selected-pic" ).innerHTML = '<img src="' + src + '">' ;
+    $("#selected-pic").html('<img src="' + src + '">');
 
     var canvas = document.getElementById('hidden-canvas'),
         context = canvas.getContext('2d');
